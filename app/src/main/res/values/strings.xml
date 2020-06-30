@@ -1,0 +1,52 @@
+<resources>
+    // Titulos
+    <string name="app_name">CrudAlunos</string>
+    <string name="title_aluno">Alunos</string>
+    <string name="title_mais">Mais</string>
+    <string name="title_aluno_add">Aluno</string>
+    <string name="title_usuario_cadastrar">Novo usuário</string>
+    <string name="title_login">Login</string>
+
+    // SplashScreen
+    <string name="subtitle_carregando">Carregando...</string>
+
+    <string name="bem_vindo">Bem-Vindo</string>
+    <string name="login">Faça login para continuar</string>
+    <string name="entrar">Entrar</string>
+    <string name="cadastrar">Cadastre-se</string>
+    <string name="usuario">Usuário</string>
+    <string name="senha">Senha</string>
+    <string name="confirmacaoSenha">Confirmar senha</string>
+    <string name="sp_usuario">SP_USUARIO</string>
+    <string name="pagina_inicial">Página Inicial</string>
+    <string name="sem_usuario">Sem usuário</string>
+    <string name="ligar">Ligar</string>
+    <string name="email">E-mail</string>
+
+    <string name="salvar">Salvar</string>
+
+    // Validações
+    <string name="usuario_ou_senha_invalidos">Usuário ou Senha inválidos</string>
+
+    // Validações do usuario
+    <string name="usuario_obrigatorio">Informe um nome de usuário</string>
+    <string name="usuario_ja_cadastrado">Usuário já cadastrada</string>
+
+    // Validaçoes senha usuario
+    <string name="senha_obrigatoria">Digite uma senha</string>
+    <string name="confirmacao_senha_obrigatoria">Digite a confirmação de senha</string>
+    <string name="senhas_nao_correspondem">Senhas não correspondem</string>
+
+    // Validações alunos
+    <string name="nome_obrigatorio">Digite o nome do aluno</string>
+    <string name="email_obrigatorio">Digite um e-mail</string>
+    <string name="telefone_obrigatorio">Digite o telefone</string>
+
+    // Alunos
+    <string name="nome">Nome</string>
+    <string name="telefone">Telefone</string>
+    <string name="selecionar">Selecionar</string>
+    <string name="remover">Remover</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
