@@ -10,19 +10,16 @@ import androidx.room.Update;
 import java.util.List;
 
 @Dao
-public interface AlunoDao {
-    @Query("SELECT * FROM aluno")
-    LiveData<List<Aluno>> getAll();
-
-    @Query("SELECT * FROM aluno WHERE id = :id")
-    Aluno getById(int id);
+public interface HorarioDao {
+    @Query("SELECT * FROM horarios")
+    LiveData<List<Horario>> getAll();
 
     @Insert
-    void insert(Aluno aluno);
+    void insert(Horario horario);
 
     @Delete
-    void delete(Aluno aluno);
+    void delete(Horario horario);
 
     @Update
-    void update(Aluno aluno);
+    void update(Horario horario);
 }

@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
 import android.app.Activity;
@@ -26,11 +25,10 @@ import java.io.InputStream;
 
 import unis.edu.crudalunos.helpers.functions;
 import unis.edu.crudalunos.model.Aluno;
-import unis.edu.crudalunos.model.AlunoViewModel;
-import unis.edu.crudalunos.model.UsuarioViewModel;
+import unis.edu.crudalunos.model.Usuario;
 
 public class AlunoCadastrar extends AppCompatActivity {
-    static final String ALUNO = "ALUNO";
+    static final String USUARIO = "USUARIO";
     final int REQUEST_CODE_GALLERY = 999;
 
     private ImageView imageView;
@@ -40,7 +38,7 @@ public class AlunoCadastrar extends AppCompatActivity {
     private TextInputLayout textInputLayoutEmail;
     private TextInputLayout textInputLayoutTelefone;
 
-    private Aluno aluno;
+    private Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +52,12 @@ public class AlunoCadastrar extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        Object data = intent.getSerializableExtra(ALUNO);
+        Object data = intent.getSerializableExtra(USUARIO);
         if(data != null) {
-            aluno = (Aluno)data;
+            usuario = (Usuario) data;
             preencherValores();
         } else {
-            aluno = new Aluno();
+            usuario = new Usuario();
         }
     }
 
@@ -127,21 +125,23 @@ public class AlunoCadastrar extends AppCompatActivity {
     }
 
     private void preencherValores() {
-        textInputLayoutNome.getEditText().setText(aluno.getNome());
-        textInputLayoutEmail.getEditText().setText(aluno.getEmail());
-        textInputLayoutTelefone.getEditText().setText(aluno.getTelefone());
+        textInputLayoutNome.getEditText().setText(usuario.getNome());
 
-        byte[] byteAluno = aluno.getFoto();
-        if(byteAluno != null) {
-            Bitmap bitmap = BitmapFactory.decodeByteArray(byteAluno, 0, byteAluno.length);
-            imageView.setImageBitmap(bitmap);
+        if(usuario.getAluno() != null) {
+            textInputLayoutEmail.getEditText().setText(usuario.getAluno().getEmail());
+            textInputLayoutTelefone.getEditText().setText(usuario.getAluno().getTelefone());
+            byte[] byteAluno = usuario.getAluno().getFoto();
+            if (byteAluno != null) {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(byteAluno, 0, byteAluno.length);
+                imageView.setImageBitmap(bitmap);
+            }
         }
     }
 
-    private Boolean validate(Aluno aluno) {
-        Boolean nome = validateNome(aluno.getNome());
-        Boolean email = validateEmail(aluno.getEmail());
-        Boolean telefone = validateTelefone(aluno.getTelefone());
+    private Boolean validate(Usuario usuario) {
+        Boolean nome = validateNome(usuario.getNome());
+        Boolean email = validateEmail(usuario.getAluno().getEmail());
+        Boolean telefone = validateTelefone(usuario.getAluno().getTelefone());
 
         return (nome && email && telefone);
     }
@@ -178,18 +178,21 @@ public class AlunoCadastrar extends AppCompatActivity {
     }
 
     private void AtribuirValores() {
-        aluno.setNome(textInputLayoutNome.getEditText().getText().toString());
-        aluno.setEmail(textInputLayoutEmail.getEditText().getText().toString());
-        aluno.setTelefone(textInputLayoutTelefone.getEditText().getText().toString());
-        aluno.setFoto(functions.imageViewToByte(imageView));
+        usuario.setNome(textInputLayoutNome.getEditText().getText().toString());
+        if(usuario.getAluno() == null) {
+            usuario.setAluno(new Aluno());
+        }
+        usuario.getAluno().setEmail(textInputLayoutEmail.getEditText().getText().toString());
+        usuario.getAluno().setTelefone(textInputLayoutTelefone.getEditText().getText().toString());
+        usuario.getAluno().setFoto(functions.imageViewToByte(imageView));
     }
 
     private void salvar() {
         AtribuirValores();
 
-        if(validate(aluno)) {
+        if(validate(usuario)) {
             Intent returnIntent = new Intent();
-            returnIntent.putExtra(ALUNO, aluno);
+            returnIntent.putExtra(USUARIO, usuario);
             setResult(Activity.RESULT_OK, returnIntent);
             finish();
         }

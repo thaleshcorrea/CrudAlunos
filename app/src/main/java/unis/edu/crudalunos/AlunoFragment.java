@@ -22,17 +22,18 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-import unis.edu.crudalunos.adapter.AlunoAdapter;
+import unis.edu.crudalunos.adapter.UsuarioAdapter;
 import unis.edu.crudalunos.model.Aluno;
-import unis.edu.crudalunos.model.AlunoViewModel;
+import unis.edu.crudalunos.model.Usuario;
+import unis.edu.crudalunos.model.UsuarioViewModel;
 
 public class AlunoFragment extends Fragment {
 
-    static final String ALUNO = "ALUNO";
+    static final String USUARIO = "USUARIO";
     private static final int ALUNO_ADD_REQUEST = 1;
     private static final int ALUNO_EDIT_REQUEST = 2;
 
-    private AlunoViewModel alunoViewModel;
+    private UsuarioViewModel usuarioViewModel;
 
     private FloatingActionButton fbAdd;
 
@@ -49,14 +50,14 @@ public class AlunoFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setHasFixedSize(true);
 
-        final AlunoAdapter adapter = new AlunoAdapter();
+        final UsuarioAdapter adapter = new UsuarioAdapter();
         recyclerView.setAdapter(adapter);
 
-        alunoViewModel = new ViewModelProvider(this).get(AlunoViewModel.class);
-        alunoViewModel.getAll().observe((LifecycleOwner) _view.getContext(), new Observer<List<Aluno>>() {
+        usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
+        usuarioViewModel.getAllAlunos().observe((LifecycleOwner) _view.getContext(), new Observer<List<Usuario>>() {
             @Override
-            public void onChanged(List<Aluno> alunos) {
-                adapter.setAlunos(alunos);
+            public void onChanged(List<Usuario> usuarios) {
+                adapter.setUsuarios(usuarios);
             }
         });
 
@@ -68,15 +69,15 @@ public class AlunoFragment extends Fragment {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                alunoViewModel.delete(adapter.getAlunoAt(viewHolder.getAdapterPosition()));
+                usuarioViewModel.delete(adapter.getAlunoAt(viewHolder.getAdapterPosition()));
                 Toast.makeText(_view.getContext(), "Aluno removido", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
 
-        adapter.setOnImteClickListener(new AlunoAdapter.OnItemClickListener() {
+        adapter.setOnImteClickListener(new UsuarioAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Aluno aluno) {
-                editar(aluno);
+            public void onItemClick(Usuario usuario) {
+                editar(usuario);
             }
         });
 
@@ -104,12 +105,12 @@ public class AlunoFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode == Activity.RESULT_OK) {
-            Aluno aluno = (Aluno) data.getSerializableExtra(ALUNO);
+            Usuario usuario = (Usuario) data.getSerializableExtra(USUARIO);
 
             if (requestCode == ALUNO_ADD_REQUEST) {
-                alunoViewModel.insert(aluno);
+                usuarioViewModel.insert(usuario);
             } else if (requestCode == ALUNO_EDIT_REQUEST) {
-                alunoViewModel.update(aluno);
+                usuarioViewModel.update(usuario);
             }
 
             Toast.makeText(_view.getContext(), "Registro salvo", Toast.LENGTH_SHORT).show();
@@ -136,9 +137,9 @@ public class AlunoFragment extends Fragment {
         startActivityForResult(intent, ALUNO_ADD_REQUEST);
     }
 
-    private void editar(Aluno aluno) {
+    private void editar(Usuario usuario) {
         Intent intent = new Intent(_view.getContext(), AlunoCadastrar.class);
-        intent.putExtra(ALUNO, aluno);
+        intent.putExtra(USUARIO, usuario);
         startActivityForResult(intent, ALUNO_EDIT_REQUEST);
     }
 }

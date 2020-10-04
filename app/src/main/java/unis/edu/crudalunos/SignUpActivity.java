@@ -89,7 +89,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         String nomeUsuario = textInputLayoutUsuario.getEditText().getText().toString();
-        usuarioViewModel.getByNome(nomeUsuario, new OnTaskCompleted() {
+        usuarioViewModel.getByLogin(nomeUsuario, new OnTaskCompleted() {
             @Override
             public void processFinish(Object output) {
                 if (output != null) {

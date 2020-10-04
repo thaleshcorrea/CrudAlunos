@@ -5,26 +5,31 @@ import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+
+import java.util.List;
 
 import unis.edu.crudalunos.helpers.OnTaskCompleted;
 
 public class UsuarioViewModel extends AndroidViewModel {
     private UsuarioDao usuarioDao;
     private AppDatabase database;
+    private LiveData<List<Usuario>> usuarios;
 
     public UsuarioViewModel(@NonNull Application application) {
         super(application);
 
         database = AppDatabase.getDatabase(application);
         usuarioDao = database.usuarioDao();
+        usuarios = usuarioDao.getAllAlunos();
     }
 
     public void getById(int id, OnTaskCompleted listener) {
         new UsuarioViewModel.GetByIdAsyncTask(usuarioDao, listener).execute(id);
     }
 
-    public void getByNome(String nome, OnTaskCompleted listener) {
-        new UsuarioViewModel.GetByNomeAsyncTask(usuarioDao, listener).execute(nome);
+    public void getByLogin(String login, OnTaskCompleted listener) {
+        new GetByLoginAsyncTask(usuarioDao, listener).execute(login);
     }
 
     public void Login(String usuario, String senha, OnTaskCompleted listener) {
@@ -41,6 +46,10 @@ public class UsuarioViewModel extends AndroidViewModel {
 
     public void delete(Usuario usuario) {
         new UsuarioViewModel.DeleteAsyncTask(usuarioDao).execute(usuario);
+    }
+
+    public LiveData<List<Usuario>> getAllAlunos() {
+        return usuarios;
     }
 
     private class GetByIdAsyncTask extends AsyncTask<Integer, Void, Usuario> {
@@ -63,18 +72,18 @@ public class UsuarioViewModel extends AndroidViewModel {
         }
     }
 
-    private class GetByNomeAsyncTask extends AsyncTask<String, Void, Usuario> {
+    private class GetByLoginAsyncTask extends AsyncTask<String, Void, Usuario> {
         private UsuarioDao usuarioDao;
         private OnTaskCompleted listener;
 
-        public GetByNomeAsyncTask(UsuarioDao usuarioDao, OnTaskCompleted listener) {
+        public GetByLoginAsyncTask(UsuarioDao usuarioDao, OnTaskCompleted listener) {
             this.usuarioDao = usuarioDao;
             this.listener = listener;
         }
 
         @Override
         protected Usuario doInBackground(String... strings) {
-            return usuarioDao.getByNome(strings[0]);
+            return usuarioDao.getByLogin(strings[0]);
         }
 
         @Override

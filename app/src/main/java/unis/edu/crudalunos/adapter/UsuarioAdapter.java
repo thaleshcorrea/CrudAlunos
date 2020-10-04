@@ -1,11 +1,8 @@
 package unis.edu.crudalunos.adapter;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,57 +11,57 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import unis.edu.crudalunos.MainActivity;
 import unis.edu.crudalunos.R;
 import unis.edu.crudalunos.model.Aluno;
+import unis.edu.crudalunos.model.Usuario;
 
-public class AlunoAdapter extends RecyclerView.Adapter<AlunoAdapter.AlunoHolder> {
-    private List<Aluno> alunos = new ArrayList<>();
+public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioHolder> {
+    private List<Usuario> usuarios = new ArrayList<>();
     private OnItemClickListener listener;
 
     @NonNull
     @Override
-    public AlunoHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public UsuarioHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.aluno_item, parent, false);
-        return new AlunoHolder(itemView);
+        return new UsuarioHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AlunoHolder holder, int position) {
-        Aluno alunoAtual = alunos.get(position);
-        holder.textViewTitulo.setText(alunoAtual.getNome());
-        holder.textViewEmail.setText(alunoAtual.getEmail());
-        holder.textViewTelefone.setText(alunoAtual.getTelefone());
-
-        byte[] byteAluno = alunoAtual.getFoto();
-        if (byteAluno != null) {
-            Bitmap bitmap = BitmapFactory.decodeByteArray(byteAluno, 0, byteAluno.length);
-            holder.imageView.setImageBitmap(bitmap);
+    public void onBindViewHolder(@NonNull UsuarioHolder holder, int position) {
+        Usuario usuarioAtual = usuarios.get(position);
+        holder.textViewTitulo.setText(usuarioAtual.getNome());
+        if(usuarioAtual.getAluno() != null) {
+            holder.textViewEmail.setText(usuarioAtual.getAluno().getEmail());
+            holder.textViewTelefone.setText(usuarioAtual.getAluno().getTelefone());
+            byte[] byteAluno = usuarioAtual.getAluno().getFoto();
+            if (byteAluno != null) {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(byteAluno, 0, byteAluno.length);
+                holder.imageView.setImageBitmap(bitmap);
+            }
         }
     }
 
     @Override
     public int getItemCount() {
-        return alunos.size();
+        return usuarios.size();
     }
 
-    public void setAlunos(List<Aluno> alunos) {
-        this.alunos = alunos;
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
         notifyDataSetChanged();
     }
 
-    public Aluno getAlunoAt(int position) {
-        return alunos.get(position);
+    public Usuario getAlunoAt(int position) {
+        return usuarios.get(position);
     }
 
-    class AlunoHolder extends RecyclerView.ViewHolder {
+    class UsuarioHolder extends RecyclerView.ViewHolder {
 
         public static final int REQUEST_CALL = 1;
         private TextView textViewTitulo;
@@ -75,7 +72,7 @@ public class AlunoAdapter extends RecyclerView.Adapter<AlunoAdapter.AlunoHolder>
         private Button btLigar;
         private Button btEmail;
 
-        public AlunoHolder(View itemView) {
+        public UsuarioHolder(View itemView) {
             super(itemView);
             textViewTitulo = itemView.findViewById(R.id.text_view_titulo);
             textViewEmail = itemView.findViewById(R.id.textViewEmail);
@@ -89,7 +86,7 @@ public class AlunoAdapter extends RecyclerView.Adapter<AlunoAdapter.AlunoHolder>
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     if (listener != null && position != RecyclerView.NO_POSITION)
-                        listener.onItemClick(alunos.get(position));
+                        listener.onItemClick(usuarios.get(position));
                 }
             });
 
@@ -97,13 +94,13 @@ public class AlunoAdapter extends RecyclerView.Adapter<AlunoAdapter.AlunoHolder>
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    Aluno aluno = alunos.get(position);
+                    Usuario usuario = usuarios.get(position);
 
                     Intent intent = new Intent(Intent.ACTION_SEND);
                     intent.setType("plain/text");
-                    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{aluno.getEmail()});
-                    intent.putExtra(Intent.EXTRA_SUBJECT, aluno.getNome());
-                    intent.putExtra(Intent.EXTRA_TEXT, "Email para " + aluno.getNome());
+                    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{usuario.getAluno().getEmail()});
+                    intent.putExtra(Intent.EXTRA_SUBJECT, usuario.getNome());
+                    intent.putExtra(Intent.EXTRA_TEXT, "Email para " + usuario.getNome());
                     v.getContext().startActivity(Intent.createChooser(intent, ""));
                 }
             });
@@ -112,14 +109,14 @@ public class AlunoAdapter extends RecyclerView.Adapter<AlunoAdapter.AlunoHolder>
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    Aluno aluno = alunos.get(position);
+                    Usuario usuario = usuarios.get(position);
                 }
             });
         }
     }
 
     public interface OnItemClickListener {
-        void onItemClick(Aluno aluno);
+        void onItemClick(Usuario usuario);
     }
 
     public void setOnImteClickListener(OnItemClickListener listener) {

@@ -1,10 +1,14 @@
 package unis.edu.crudalunos.model;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+
+import unis.edu.crudalunos.enums.UsuarioTipo;
 
 @Entity(tableName = "usuario")
 public class Usuario implements Serializable {
@@ -18,6 +22,14 @@ public class Usuario implements Serializable {
     }
 
     @NonNull
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(@NonNull String login) {
+        this.login = login;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -35,11 +47,27 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public int getUsuarioTipo() {
+        return usuarioTipo;
+    }
+
+    public void setUsuarioTipo(int usuarioTipo) {
+        this.usuarioTipo = usuarioTipo;
+    }
+
     public Usuario() {
     }
 
-    public Usuario(String nome, String senha) {
-        this.nome = nome;
+    public Usuario(String login, String senha) {
+        this.login = login;
         this.senha = senha;
     }
 
@@ -47,8 +75,16 @@ public class Usuario implements Serializable {
     private int id;
 
     @NonNull
-    private String nome;
+    private String login;
 
     @NonNull
     private String senha;
+
+    private String nome;
+
+    @ColumnInfo(name = "usuario_tipo")
+    private int usuarioTipo;
+
+    @Embedded
+    private Aluno aluno;
 }
