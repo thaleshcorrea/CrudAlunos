@@ -9,10 +9,18 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {Aluno.class, Usuario.class}, version = 2)
+@Database(entities = {
+        Usuario.class,
+        Curso.class,
+        Horario.class,
+        Disciplina.class
+}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
-    public abstract UsuarioDao usuarioDao();
 
+    public abstract UsuarioDao usuarioDao();
+    public abstract CursoDao cursoDao();
+    public abstract DisciplinaDao disciplinaDao();
+    public abstract HorarioDao horarioDao();
 
     private static volatile AppDatabase database;
     public static AppDatabase getDatabase(Context context) {
@@ -34,18 +42,6 @@ public abstract class AppDatabase extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
-            new PopulateDbAsyncTask(database).execute();
         }
     };
-
-    private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
-        private PopulateDbAsyncTask(AppDatabase db) {
-            alunoDao = db.alunoDao();
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            return null;
-        }
-    }
 }

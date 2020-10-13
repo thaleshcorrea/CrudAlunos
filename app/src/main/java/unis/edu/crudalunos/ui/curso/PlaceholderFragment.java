@@ -1,4 +1,4 @@
-package unis.edu.crudalunos.ui.main;
+package unis.edu.crudalunos.ui.curso;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -43,7 +43,7 @@ public class PlaceholderFragment extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_curso_cadastrar, container, false);
+        View root = inflater.inflate(R.layout.fragment_curso, container, false);
         final TextView textView = root.findViewById(R.id.section_label);
         pageViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override

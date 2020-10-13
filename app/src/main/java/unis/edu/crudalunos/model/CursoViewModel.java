@@ -15,6 +15,7 @@ public class CursoViewModel extends AndroidViewModel {
     private CursoDao cursoDao;
     private AppDatabase database;
     private LiveData<List<Curso>> cursos;
+    private LiveData<List<CursoDisciplinas>> cursoDisciplinas;
 
     public CursoViewModel(@NonNull Application application) {
         super(application);
@@ -28,8 +29,8 @@ public class CursoViewModel extends AndroidViewModel {
         return cursos;
     }
 
-    public void GetCursoComDisciplinas(OnTaskCompleted listener) {
-        new CursoViewModel.GetCursoComDisciplinasAsync(cursoDao, listener).execute();
+    public LiveData<List<CursoDisciplinas>> getCursoDisciplinas(int id) {
+        return cursoDisciplinas;
     }
 
     public void insert(Curso curso) {
@@ -42,26 +43,6 @@ public class CursoViewModel extends AndroidViewModel {
 
     public void delete(Curso curso) {
         new CursoViewModel.DeleteAsyncTask(cursoDao).execute(curso);
-    }
-
-    private class GetCursoComDisciplinasAsync extends AsyncTask<Void, Void, List<CursoDisciplinas>> {
-        private CursoDao cursoDao;
-        private OnTaskCompleted listener;
-
-        public GetCursoComDisciplinasAsync(CursoDao cursoDao, OnTaskCompleted listener) {
-            this.cursoDao = this.cursoDao;
-            this.listener = listener;
-        }
-
-        @Override
-        protected List<CursoDisciplinas> doInBackground(Void... voids) {
-            return cursoDao.getCursoComDisciplinas();
-        }
-
-        @Override
-        protected void onPostExecute(List<CursoDisciplinas> cursoDisciplinas) {
-            listener.processFinish(cursoDisciplinas);
-        }
     }
 
     private class InsertAsyncTask extends AsyncTask<Curso, Void, Void> {

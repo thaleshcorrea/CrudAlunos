@@ -16,8 +16,8 @@ public interface CursoDao {
     LiveData<List<Curso>> getAll();
 
     @Transaction
-    @Query("SELECT * FROM cursos")
-    List<CursoDisciplinas> getCursoComDisciplinas();
+    @Query("SELECT * FROM cursos WHERE id = :id")
+    LiveData<CursoDisciplinas> getCursoComDisciplinas(int id);
 
     @Insert
     void insert(Curso curso);

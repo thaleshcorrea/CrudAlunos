@@ -1,4 +1,4 @@
-package unis.edu.crudalunos.ui.main;
+package unis.edu.crudalunos.ui.curso;
 
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
