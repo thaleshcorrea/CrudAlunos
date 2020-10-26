@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "cursos")
-public class Curso {
+public class Curso implements Serializable {
     public int getId() {
         return id;
     }

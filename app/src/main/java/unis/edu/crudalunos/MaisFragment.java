@@ -1,6 +1,5 @@
 package unis.edu.crudalunos;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -23,26 +22,10 @@ public class MaisFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_mais, container, false);
+        View view = inflater.inflate(R.layout.fragment_more, container, false);
 
         this.view = view;
-        initViews();
-        atribuirEventos();
 
         return view;
-    }
-
-    private void initViews() {
-        btNovoCurso = view.findViewById(R.id.btNovoCurso);
-    }
-
-    private void atribuirEventos() {
-        btNovoCurso.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(view.getContext(), CursoActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 }

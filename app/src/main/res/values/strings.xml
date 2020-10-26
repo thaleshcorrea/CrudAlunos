@@ -1,14 +1,12 @@
 <resources>
-    // Titulos
+    <!-- Titles -->
     <string name="app_name">CrudAlunos</string>
     <string name="title_aluno">Alunos</string>
     <string name="title_mais">Mais</string>
     <string name="title_aluno_add">Aluno</string>
     <string name="title_usuario_cadastrar">Novo usuário</string>
     <string name="title_login">Login</string>
-
-    // SplashScreen
-    <string name="subtitle_carregando">Carregando...</string>
+    <string name="title_curso">Curso</string>
 
     <string name="bem_vindo">Bem-Vindo</string>
     <string name="login">Faça login para continuar</string>
@@ -25,34 +23,48 @@
 
     <string name="salvar">Salvar</string>
 
-    // Validações
+    <!-- Validações -->
     <string name="usuario_ou_senha_invalidos">Usuário ou Senha inválidos</string>
 
-    // Validações do usuario
+    <!-- Validações do usuario -->
     <string name="usuario_obrigatorio">Informe um nome de usuário</string>
     <string name="usuario_ja_cadastrado">Usuário já cadastrada</string>
 
-    // Validaçoes senha usuario
+    <!-- Validaçoes senha usuario -->
     <string name="senha_obrigatoria">Digite uma senha</string>
     <string name="confirmacao_senha_obrigatoria">Digite a confirmação de senha</string>
     <string name="senhas_nao_correspondem">Senhas não correspondem</string>
 
-    // Validações alunos
+    <!-- Validações alunos -->
     <string name="nome_obrigatorio">Digite o nome do aluno</string>
     <string name="email_obrigatorio">Digite um e-mail</string>
     <string name="telefone_obrigatorio">Digite o telefone</string>
 
-    // Alunos
+    <!-- Alunos -->
     <string name="nome">Nome</string>
     <string name="telefone">Telefone</string>
     <string name="selecionar">Selecionar</string>
     <string name="remover">Remover</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_curso">CursoActivity</string>
 
-    // Cadastro cursos
-    <string name="title_curso">Curso</string>
+    <!-- Curso cadastros -->
     <string name="title_tab_detalhes">Detalhes</string>
     <string name="title_tab_disciplinas">Disciplinas</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 </resources>

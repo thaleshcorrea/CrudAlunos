@@ -61,7 +61,7 @@ public class AlunoFragment extends Fragment {
             }
         });
 
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        /*new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
@@ -72,7 +72,7 @@ public class AlunoFragment extends Fragment {
                 usuarioViewModel.delete(adapter.getAlunoAt(viewHolder.getAdapterPosition()));
                 Toast.makeText(_view.getContext(), "Aluno removido", Toast.LENGTH_SHORT).show();
             }
-        }).attachToRecyclerView(recyclerView);
+        }).attachToRecyclerView(recyclerView);*/
 
         adapter.setOnImteClickListener(new UsuarioAdapter.OnItemClickListener() {
             @Override

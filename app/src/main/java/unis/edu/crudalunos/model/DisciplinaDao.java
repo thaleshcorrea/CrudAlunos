@@ -15,6 +15,9 @@ public interface DisciplinaDao {
     @Query("SELECT * FROM disciplinas")
     LiveData<List<Disciplina>> getAll();
 
+    @Query("SELECT * FROM disciplinas WHERE cursoId = :cursoId")
+    LiveData<List<Disciplina>> getByCurso(int cursoId);
+
     @Transaction
     @Query("SELECT * FROM disciplinas")
     List<DisciplinaHorarios> getDisciplinaComHorarios();

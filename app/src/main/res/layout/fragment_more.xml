@@ -6,12 +6,4 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MaisFragment">
 
-    <Button
-        android:id="@+id/btNovoCurso"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="Novo curso"
-        style="@style/AppTheme.ButtonConfirm" />
-
 </FrameLayout>

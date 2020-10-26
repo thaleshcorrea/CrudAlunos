@@ -16,22 +16,20 @@
             android:name=".CursoActivity"
             android:label="@string/title_activity_curso"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".SplashScreen"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".DisciplinaCadastrarActivity" />
         <activity
             android:name=".AlunoCadastrar"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SignUpActivity"
             android:parentActivityName=".LoginActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />

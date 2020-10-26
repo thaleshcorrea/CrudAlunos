@@ -15,18 +15,24 @@ public class DisciplinaViewModel extends AndroidViewModel {
     private DisciplinaDao disciplinaDao;
     private AppDatabase database;
     private LiveData<List<Disciplina>> disciplinas;
+    private LiveData<List<Disciplina>> disciplinasByCurso;
 
 
-    public DisciplinaViewModel(@NonNull Application application) {
+    public DisciplinaViewModel(@NonNull Application application, int cursoId) {
         super(application);
 
         database = AppDatabase.getDatabase(application);
         disciplinaDao = database.disciplinaDao();
         disciplinas = disciplinaDao.getAll();
+        disciplinasByCurso = disciplinaDao.getByCurso(cursoId);
     }
 
     public LiveData<List<Disciplina>> getAll() {
         return disciplinas;
+    }
+
+    public LiveData<List<Disciplina>> getByCurso() {
+        return disciplinasByCurso;
     }
 
     public void GetCursoComDisciplinas(OnTaskCompleted listener) {

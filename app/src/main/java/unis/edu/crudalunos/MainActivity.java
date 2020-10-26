@@ -91,8 +91,12 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new AlunoFragment();
                             getSupportActionBar().setTitle(getText(R.string.title_aluno));
                             break;
+                        case R.id.nav_cursos:
+                            selectedFragment = new CursoFragmentMain();
+                            getSupportActionBar().setTitle(getString(R.string.title_curso));
+                            break;
                         case R.id.nav_mais:
-                            selectedFragment = new MaisFragment();
+                            selectedFragment = new SettingsFragment();
                             getSupportActionBar().setTitle(getText(R.string.title_mais));
                             break;
                     }

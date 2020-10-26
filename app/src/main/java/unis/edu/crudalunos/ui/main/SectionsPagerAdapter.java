@@ -1,4 +1,4 @@
-package unis.edu.crudalunos.ui.curso;
+package unis.edu.crudalunos.ui.main;
 
 import android.content.Context;
 
@@ -8,10 +8,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import unis.edu.crudalunos.CursoCadastrarFragment;
 import unis.edu.crudalunos.CursoDisciplinasFragment;
-import unis.edu.crudalunos.CursoPrincipalFragment;
 import unis.edu.crudalunos.R;
 
+/**
+ * A [FragmentPagerAdapter] that returns a fragment corresponding to
+ * one of the sections/tabs/pages.
+ */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
@@ -28,10 +32,10 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new CursoPrincipalFragment();
+                fragment = CursoCadastrarFragment.newInstance(null);
                 break;
             case 1:
-                fragment = new CursoDisciplinasFragment();
+                fragment = CursoDisciplinasFragment.newInstance(null);
                 break;
         }
         return fragment;

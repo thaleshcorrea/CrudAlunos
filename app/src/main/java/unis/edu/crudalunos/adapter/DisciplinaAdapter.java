@@ -17,7 +17,7 @@ import unis.edu.crudalunos.model.Disciplina;
 import unis.edu.crudalunos.model.Usuario;
 
 public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaAdapter.DisciplinaHolder>{
-    private List<CursoDisciplinas> disciplinas = new ArrayList<>();
+    private List<Disciplina> disciplinas = new ArrayList<>();
     private OnItemClickListener listener;
 
     @NonNull
@@ -30,8 +30,7 @@ public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaAdapter.Di
 
     @Override
     public void onBindViewHolder(@NonNull DisciplinaAdapter.DisciplinaHolder holder, int position) {
-        CursoDisciplinas cursoDisciplinas = disciplinas.get(position);
-        Disciplina disciplina = cursoDisciplinas.getDisciplinas().get(position);
+        Disciplina disciplina = disciplinas.get(position);
         holder.tbNome.setText(disciplina.getDescricao());
     }
 
@@ -40,9 +39,13 @@ public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaAdapter.Di
         return disciplinas.size();
     }
 
-    public void setDisciplinas(List<CursoDisciplinas> cursoDisciplinas) {
-        this.disciplinas = cursoDisciplinas;
+    public void setDisciplinas(List<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
         notifyDataSetChanged();
+    }
+
+    public Disciplina getDisciplinaAt(int position) {
+        return disciplinas.get(position);
     }
 
     class DisciplinaHolder extends RecyclerView.ViewHolder{
@@ -67,11 +70,10 @@ public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaAdapter.Di
     }
 
     public interface OnItemClickListener {
-        void onItemClick(CursoDisciplinas cursoDisciplinas);
+        void onItemClick(Disciplina disciplina);
     }
 
     public void setOnClickListener(DisciplinaAdapter.OnItemClickListener listener) {
         this.listener = listener;
     }
-
 }
