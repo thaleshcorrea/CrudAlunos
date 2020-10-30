@@ -13,8 +13,10 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import unis.edu.crudalunos.enums.UsuarioTipo;
 import unis.edu.crudalunos.helpers.MyPreferences;
 import unis.edu.crudalunos.helpers.UserPreferences;
+import unis.edu.crudalunos.helpers.app_parameters;
 import unis.edu.crudalunos.model.Usuario;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,17 +36,22 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         userPreferences = new UserPreferences(getApplicationContext(), getText(R.string.sp_usuario).toString());
+        savePreferences();
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        selectedFragment = new AlunoFragment();
-        getSupportActionBar().setTitle(getText(R.string.title_aluno));
+        getSupportActionBar().setTitle("Inicio");
+
+        if(app_parameters.getLoggedUser().getUsuarioTipo() == UsuarioTipo.ALUNO.getValue()) {
+            setFragmentAluno();
+        }
+        else {
+            setFragmentProfessor();
+        }
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 selectedFragment).commit();
-
-        editPreferences();
     }
 
     @Override
@@ -65,14 +72,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void setFragmentAluno() {
+        selectedFragment = new AlunoHomeFragment();
+    }
+
+    private void setFragmentProfessor() {
+        selectedFragment = new ProfessorHomeFragment();
+    }
+
     private void sair() {
         userPreferences.remove();
         finishAndRemoveTask();
     }
 
-    private void editPreferences() {
+    private void savePreferences() {
         Intent intent = getIntent();
         Usuario usuario = (Usuario) intent.getSerializableExtra(USER);
+        app_parameters.setLoggedUser(usuario);
         Boolean stayLogged = intent.getBooleanExtra(STAY_LOGGED, false);
         if(stayLogged) {
             userPreferences.set(usuario.getId());
@@ -87,9 +103,14 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                     switch (menuItem.getItemId()) {
-                        case R.id.nav_alunos:
-                            selectedFragment = new AlunoFragment();
-                            getSupportActionBar().setTitle(getText(R.string.title_aluno));
+                        case R.id.nav_home:
+                            if(app_parameters.getLoggedUser().getUsuarioTipo() == UsuarioTipo.ALUNO.getValue()) {
+                                setFragmentAluno();
+                            }
+                            else {
+                                setFragmentProfessor();
+                            }
+                            getSupportActionBar().setTitle("Inicio");
                             break;
                         case R.id.nav_mais:
                             selectedFragment = new SettingsFragment();

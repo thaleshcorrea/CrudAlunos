@@ -3,12 +3,15 @@ package unis.edu.crudalunos;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import unis.edu.crudalunos.model.Disciplina;
 import unis.edu.crudalunos.model.DisciplinaViewModel;
@@ -56,7 +59,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 disciplinaViewModel.insert(disciplina);
             }
 
-            Toast.makeText(getView().getContext(), "Registro salvo", Toast.LENGTH_SHORT).show();
+            Snackbar.make(getView(), "Registro salvo", Snackbar.LENGTH_LONG)
+                    .show();
         }
 
         super.onActivityResult(requestCode, resultCode, data);

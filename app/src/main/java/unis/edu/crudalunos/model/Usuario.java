@@ -56,6 +56,14 @@ public class Usuario implements Serializable {
         this.aluno = aluno;
     }
 
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
+
     public int getUsuarioTipo() {
         return usuarioTipo;
     }
@@ -89,4 +97,7 @@ public class Usuario implements Serializable {
 
     @Embedded
     private Aluno aluno;
+
+    @Embedded
+    private Professor professor;
 }

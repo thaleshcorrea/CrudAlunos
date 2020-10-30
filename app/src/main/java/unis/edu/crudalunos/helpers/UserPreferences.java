@@ -3,7 +3,8 @@ package unis.edu.crudalunos.helpers;
 import android.content.Context;
 
 public class UserPreferences extends MyPreferences {
-    
+
+
     public UserPreferences(Context context, String arquivo) {
         super(context, arquivo);
     }
