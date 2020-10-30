@@ -6,11 +6,6 @@
         android:title="Alunos"/>
 
     <item
-        android:id="@+id/nav_cursos"
-        android:icon="@drawable/ic_book_cursos"
-        android:title="Cursos"/>
-
-    <item
         android:id="@+id/nav_mais"
         android:icon="@drawable/ic_mais"
         android:title="Mais"/>

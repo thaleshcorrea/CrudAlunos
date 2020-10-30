@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -66,6 +67,7 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
+    @Ignore
     public Usuario(String login, String senha) {
         this.login = login;
         this.senha = senha;

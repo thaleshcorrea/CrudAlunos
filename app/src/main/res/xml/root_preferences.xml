@@ -1,34 +1,27 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory app:title="@string/messages_header">
+    <PreferenceCategory app:title="@string/cadastros_header">
 
-        <EditTextPreference
-            app:key="signature"
-            app:title="@string/signature_title"
-            app:useSimpleSummaryProvider="true" />
+        <Preference
+            app:key="disciplines"
+            app:title="Disciplinas"
+            app:summary="Abrir cadastro de disciplinas">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:targetClass="unis.edu.crudalunos.DisciplinaActivity"
+                android:targetPackage="unis.edu.crudalunos"/>
+        </Preference>
 
-        <ListPreference
-            app:defaultValue="reply"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:key="reply"
-            app:title="@string/reply_title"
-            app:useSimpleSummaryProvider="true" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory app:title="@string/sync_header">
-
-        <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="@string/sync_title" />
-
-        <SwitchPreferenceCompat
-            app:dependency="sync"
-            app:key="attachment"
-            app:summaryOff="@string/attachment_summary_off"
-            app:summaryOn="@string/attachment_summary_on"
-            app:title="@string/attachment_title" />
+        <Preference
+            app:key="cursos"
+            app:title="Cursos"
+            app:summary="Abrir cadastro de cursos">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:targetClass="unis.edu.crudalunos.CursoActivity"
+                android:targetPackage="unis.edu.crudalunos"/>
+        </Preference>
 
     </PreferenceCategory>
 

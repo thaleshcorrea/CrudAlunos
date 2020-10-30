@@ -27,7 +27,8 @@ import unis.edu.crudalunos.adapter.DisciplinaAdapter;
 import unis.edu.crudalunos.model.Curso;
 import unis.edu.crudalunos.model.Disciplina;
 import unis.edu.crudalunos.model.DisciplinaViewModel;
-import unis.edu.crudalunos.model.DisciplinaViewModelFactory;
+import unis.edu.crudalunos.model.Usuario;
+import unis.edu.crudalunos.model.UsuarioViewModel;
 
 public class CursoDisciplinasFragment extends Fragment {
 
@@ -76,9 +77,8 @@ public class CursoDisciplinasFragment extends Fragment {
         final DisciplinaAdapter disciplinaAdapter = new DisciplinaAdapter();
         recyclerView.setAdapter(disciplinaAdapter);
 
-        DisciplinaViewModelFactory disciplinaViewModelFactory = new DisciplinaViewModelFactory(getActivity().getApplication(), cursoId);
-        disciplinaViewModel = new ViewModelProvider(this, disciplinaViewModelFactory).get(DisciplinaViewModel.class);
-        disciplinaViewModel.getByCurso().observe((LifecycleOwner) view.getContext(), new Observer<List<Disciplina>>() {
+        disciplinaViewModel = new ViewModelProvider(this).get(DisciplinaViewModel.class);
+        disciplinaViewModel.getAll().observe((LifecycleOwner) view.getContext(), new Observer<List<Disciplina>>() {
             @Override
             public void onChanged(List<Disciplina> disciplinas) {
                 disciplinaAdapter.setDisciplinas(disciplinas);
@@ -104,6 +104,8 @@ public class CursoDisciplinasFragment extends Fragment {
                 editar(disciplina);
             }
         });
+
+        atribuirEventos();
 
         return view;
     }
@@ -138,12 +140,12 @@ public class CursoDisciplinasFragment extends Fragment {
     }
 
     private void novo() {
-        Intent intent = new Intent(view.getContext(), DisciplinaCadastrarActivity.class);
+        Intent intent = new Intent(view.getContext(), DisciplinaActivity.class);
         startActivityForResult(intent, DISCIPLINA_ADD_REQUEST);
     }
 
     private void editar(Disciplina disciplina) {
-        Intent intent = new Intent(view.getContext(), DisciplinaCadastrarActivity.class);
+        Intent intent = new Intent(view.getContext(), DisciplinaActivity.class);
         intent.putExtra(DISCIPLINA, disciplina);
         startActivityForResult(intent, DISCIPLINA_EDIT_REQUEST);
     }

@@ -8,6 +8,14 @@ import java.io.Serializable;
 
 @Entity(tableName = "disciplinas")
 public class Disciplina implements Serializable {
+    public Disciplina() {
+
+    }
+
+    public Disciplina(String nome) {
+        this.descricao = nome;
+    }
+
     public int getId() {
         return id;
     }

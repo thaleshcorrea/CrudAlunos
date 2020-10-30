@@ -74,12 +74,12 @@ public class AlunoFragment extends Fragment {
             }
         }).attachToRecyclerView(recyclerView);*/
 
-        adapter.setOnImteClickListener(new UsuarioAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Usuario usuario) {
-                editar(usuario);
-            }
-        });
+//        adapter.setOnImteClickListener(new UsuarioAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(Usuario usuario) {
+//                editar(usuario);
+//            }
+//        });
 
         initViews();
         registrarEventos();
