@@ -14,8 +14,7 @@ import unis.edu.crudalunos.helpers.OnTaskCompleted;
 public class CursoViewModel extends AndroidViewModel {
     private CursoDao cursoDao;
     private AppDatabase database;
-    private LiveData<List<Curso>> cursos;
-    private LiveData<List<CursoDisciplinas>> cursoDisciplinas;
+    private LiveData<List<CursoWithDisciplinas>> cursos;
 
     public CursoViewModel(@NonNull Application application) {
         super(application);
@@ -25,16 +24,16 @@ public class CursoViewModel extends AndroidViewModel {
         cursos = cursoDao.getAll();
     }
 
-    public LiveData<List<Curso>> getAll() {
+    public LiveData<List<CursoWithDisciplinas>> getAll() {
         return cursos;
     }
 
-    public LiveData<List<CursoDisciplinas>> getCursoDisciplinas(int id) {
-        return cursoDisciplinas;
+    public LiveData<List<CursoWithDisciplinas>> getByNome(String nome) {
+        return cursoDao.getByNome(nome);
     }
 
-    public void insert(Curso curso) {
-        new CursoViewModel.InsertAsyncTask(cursoDao).execute(curso);
+    public void insert(Curso curso, OnTaskCompleted listener) {
+        new CursoViewModel.InsertAsyncTask(cursoDao, listener).execute(curso);
     }
 
     public void update(Curso curso) {
@@ -45,17 +44,23 @@ public class CursoViewModel extends AndroidViewModel {
         new CursoViewModel.DeleteAsyncTask(cursoDao).execute(curso);
     }
 
-    private class InsertAsyncTask extends AsyncTask<Curso, Void, Void> {
+    private class InsertAsyncTask extends AsyncTask<Curso, Void, Long> {
         private CursoDao cursoDao;
+        private OnTaskCompleted listener;
 
-        public InsertAsyncTask(CursoDao cursoDao) {
+        public InsertAsyncTask(CursoDao cursoDao, OnTaskCompleted listener) {
             this.cursoDao = cursoDao;
+            this.listener = listener;
         }
 
         @Override
-        protected Void doInBackground(Curso... cursos) {
-            cursoDao.insert(cursos[0]);
-            return null;
+        protected Long doInBackground(Curso... cursos) {
+            return cursoDao.insert(cursos[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Long cursoId) {
+            listener.processFinish(cursoId);
         }
     }
 

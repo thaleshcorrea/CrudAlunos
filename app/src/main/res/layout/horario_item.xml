@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/textViewHorario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Titulo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <TextView
+            android:id="@+id/textViewDiasSemana"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/dias_semana"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupSemana"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:chipSpacingHorizontal="0dp"
+            >
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipDomingo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/short_domingo"
+                android:checkable="true"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSegunda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/short_segunda"
+                android:checkable="true"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTerca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/short_terca"
+                android:checkable="true"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipQuarta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/short_quarta"
+                android:checkable="true"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipQuinta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/short_quinta"
+                android:checkable="true"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSexta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/short_sexta"
+                android:checkable="true"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSabado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/short_sabado"
+                android:checkable="true"
+                />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

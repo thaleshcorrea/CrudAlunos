@@ -12,15 +12,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProfessorCadastrar"></activity>
-        <activity android:name=".CursoActivity" />
+        <activity android:name=".AlunoProfessorSelectorActivity"
+            android:parentActivityName=".LoginActivity"></activity>
+        <activity
+            android:name=".HorarioActivity"
+            android:parentActivityName=".DisciplinaActivity" />
+        <activity android:name=".ProfessorCadastrar" />
+        <activity
+            android:name=".CursoActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".DisciplinaActivity"
+            android:launchMode="singleTop"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".CursoCadastrarActivity"
-            android:label="@string/title_activity_curso"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_novo_curso"
+            android:parentActivityName=".CursoActivity" />
         <activity
             android:name=".AlunoCadastrar"
             android:parentActivityName=".MainActivity" />
@@ -37,7 +46,7 @@
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.MaterialComponents.NoActionBar" />
     </application>
 
 </manifest>

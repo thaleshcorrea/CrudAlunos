@@ -15,6 +15,8 @@ import com.google.android.material.snackbar.Snackbar;
 
 import unis.edu.crudalunos.model.Disciplina;
 import unis.edu.crudalunos.model.DisciplinaViewModel;
+import unis.edu.crudalunos.model.Horario;
+import unis.edu.crudalunos.model.HorarioViewModel;
 import unis.edu.crudalunos.model.Usuario;
 import unis.edu.crudalunos.model.UsuarioViewModel;
 
@@ -25,12 +27,14 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     static final String DISCIPLINA = "DISCIPLINA";
     private static final int DISCIPLINA_ADD_REQUEST = 1;
     private DisciplinaViewModel disciplinaViewModel;
+    private HorarioViewModel horarioViewModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         disciplinaViewModel = new ViewModelProvider(this).get(DisciplinaViewModel.class);
+        horarioViewModel = new ViewModelProvider(this).get(HorarioViewModel.class);
 
         preferenceClickDiscipline();
     }
@@ -56,7 +60,16 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         if(resultCode == Activity.RESULT_OK) {
             Disciplina disciplina = (Disciplina) data.getSerializableExtra(DISCIPLINA);
             if(requestCode == DISCIPLINA_ADD_REQUEST) {
-                disciplinaViewModel.insert(disciplina);
+                disciplinaViewModel.insert(disciplina, output -> {
+                    if(output == null) {
+                        return;
+                    }
+                    Long disciplinaId = (Long)output;
+                    for(Horario horario : disciplina.getHorarios()) {
+                        horario.setDisciplinaId(disciplinaId);
+                    }
+                    horarioViewModel.insertAll(disciplina.getHorarios());
+                });
             }
 
             Snackbar.make(getView(), "Registro salvo", Snackbar.LENGTH_LONG)

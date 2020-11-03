@@ -25,6 +25,9 @@ public interface UsuarioDao {
     @Query("SELECT * FROM usuario where usuario_tipo = 0")
     LiveData<List<Usuario>> getAllAlunos();
 
+    @Query("SELECT * FROM usuario WHERE nome LIKE :nome")
+    LiveData<List<Usuario>> getByNome(String nome);
+
     @Insert
     void insert(Usuario usuario);
 

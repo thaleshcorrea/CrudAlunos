@@ -1,5 +1,6 @@
 package unis.edu.crudalunos;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -11,19 +12,25 @@ import android.widget.Button;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import unis.edu.crudalunos.enums.UsuarioTipo;
 import unis.edu.crudalunos.helpers.OnTaskCompleted;
 import unis.edu.crudalunos.model.Usuario;
 import unis.edu.crudalunos.model.UsuarioViewModel;
 
 public class SignUpActivity extends AppCompatActivity {
     public static final String USER = "USER";
+    private static final String USUARIO_TIPO = "USUARIO_TIPO";
+    private static final int TIPO = 1;
 
     private UsuarioViewModel usuarioViewModel;
 
     private TextInputLayout textInputLayoutUsuario;
     private TextInputLayout textInputLayoutSenha;
     private TextInputLayout textInputLayoutConfirmarSenha;
+    private TextInputLayout textInputLayoutNome;
     private Button btSalvar;
+
+    private int tipo_usuario = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +43,28 @@ public class SignUpActivity extends AppCompatActivity {
 
         initViews();
         registrarEventos();
+
+        Intent intent = new Intent(this, AlunoProfessorSelectorActivity.class);
+        startActivityForResult(intent, TIPO);
+        super.onStart();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == TIPO) {
+                Object value = data.getIntExtra(USUARIO_TIPO, UsuarioTipo.ALUNO.getValue());
+                tipo_usuario = (Integer) value;
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void initViews() {
         textInputLayoutUsuario = findViewById(R.id.textInputUsuario);
         textInputLayoutSenha = findViewById(R.id.textInputSenha);
         textInputLayoutConfirmarSenha = findViewById(R.id.textIputConfirmarSenha);
+        textInputLayoutNome = findViewById(R.id.textInputNome);
         btSalvar = findViewById(R.id.btEntrar);
     }
 
@@ -52,6 +75,18 @@ public class SignUpActivity extends AppCompatActivity {
                 validar();
             }
         });
+    }
+
+    private Boolean validaNome() {
+        String nome = textInputLayoutNome.getEditText().getText().toString();
+
+        if (nome.isEmpty()) {
+            textInputLayoutNome.setError(getText(R.string.usuario_obrigatorio));
+            return false;
+        } else {
+            textInputLayoutNome.setError(null);
+            return true;
+        }
     }
 
     private Boolean validarUsuario() {
@@ -84,7 +119,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void validar() {
-        if (!validarUsuario() || !validarSenha()) {
+        if (!validaNome() || !validarUsuario() || !validarSenha()) {
             return;
         }
 
@@ -96,12 +131,10 @@ public class SignUpActivity extends AppCompatActivity {
                     Usuario usuario = (Usuario) output;
                     if (usuario.getId() == 0) {
                         salvar();
-                    }
-                    else {
+                    } else {
                         textInputLayoutUsuario.setError(getText(R.string.usuario_ja_cadastrado));
                     }
-                }
-                else {
+                } else {
                     salvar();
                 }
             }
@@ -109,10 +142,12 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void salvar() {
+        String nome = textInputLayoutNome.getEditText().getText().toString();
         String nomeUsuario = textInputLayoutUsuario.getEditText().getText().toString();
         String senha = textInputLayoutSenha.getEditText().getText().toString();
 
-        Usuario usuario = new Usuario(nomeUsuario, senha);
+        Usuario usuario = new Usuario(nome, nomeUsuario, senha);
+        usuario.setUsuarioTipo(tipo_usuario);
 
         Intent returnIntent = new Intent();
         returnIntent.putExtra(USER, usuario);

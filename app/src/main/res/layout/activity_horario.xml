@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HorarioActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewHorarios"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/inicio"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/textViewInicio"
+            style="@style/selectableTextView"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:textAlignment="center"
+            android:text="@string/default_time"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/textViewTitleFim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/fim"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/textViewFim"
+            style="@style/selectableTextView"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:textAlignment="center"
+            android:text="@string/default_time"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/textViewDiasSemana"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/dias_semana"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupSemana"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:chipSpacingHorizontal="0dp"
+            >
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipDomingo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/short_domingo"
+                android:checkable="true"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSegunda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/short_segunda"
+                android:checkable="true"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTerca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/short_terca"
+                android:checkable="true"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipQuarta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/short_quarta"
+                android:checkable="true"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipQuinta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/short_quinta"
+                android:checkable="true"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSexta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/short_sexta"
+                android:checkable="true"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSabado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/short_sabado"
+                android:checkable="true"
+                />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btSalvar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_ok_24"/>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

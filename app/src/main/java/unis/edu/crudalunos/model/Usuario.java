@@ -76,7 +76,8 @@ public class Usuario implements Serializable {
     }
 
     @Ignore
-    public Usuario(String login, String senha) {
+    public Usuario(String nome, String login, String senha) {
+        this.nome = nome;
         this.login = login;
         this.senha = senha;
     }

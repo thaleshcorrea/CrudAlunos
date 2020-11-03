@@ -26,8 +26,16 @@ public class HorarioViewModel extends AndroidViewModel {
         return horarios;
     }
 
+    public List<Horario> getByDisciplina(long disciplinaId) {
+        return horarioDao.getByDisciplina(disciplinaId);
+    }
+
     public void insert(Horario horario) {
         new HorarioViewModel.InsertAsyncTask(horarioDao).execute(horario);
+    }
+
+    public void insertAll(List<Horario> horarios) {
+        new HorarioViewModel.InsertAllAsyncTask(horarioDao).execute(horarios);
     }
 
     public void update(Horario horario) {
@@ -48,6 +56,20 @@ public class HorarioViewModel extends AndroidViewModel {
         @Override
         protected Void doInBackground(Horario... horarios) {
             horarioDao.insert(horarios[0]);
+            return null;
+        }
+    }
+
+    private class InsertAllAsyncTask extends AsyncTask<List<Horario>, Void, Void> {
+        private HorarioDao horarioDao;
+
+        public InsertAllAsyncTask(HorarioDao horarioDao) {
+            this.horarioDao = horarioDao;
+        }
+
+        @Override
+        protected Void doInBackground(List<Horario>... lists) {
+            horarioDao.insertAll(lists[0]);
             return null;
         }
     }

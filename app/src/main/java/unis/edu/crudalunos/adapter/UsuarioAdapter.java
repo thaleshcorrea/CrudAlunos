@@ -69,48 +69,17 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioH
         private TextView textViewTelefone;
         private ImageView imageView;
 
-        private Button btLigar;
-        private Button btEmail;
-
         public UsuarioHolder(View itemView) {
             super(itemView);
             textViewTitulo = itemView.findViewById(R.id.text_view_titulo);
             textViewEmail = itemView.findViewById(R.id.textViewEmail);
             textViewTelefone = itemView.findViewById(R.id.textViewTelefone);
             imageView = itemView.findViewById(R.id.imageView);
-            btLigar = itemView.findViewById(R.id.btLigar);
-            btEmail = itemView.findViewById(R.id.btEmail);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if (listener != null && position != RecyclerView.NO_POSITION)
-                        listener.onItemClick(usuarios.get(position));
-                }
-            });
-
-            btEmail.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    Usuario usuario = usuarios.get(position);
-
-                    Intent intent = new Intent(Intent.ACTION_SEND);
-                    intent.setType("plain/text");
-                    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{usuario.getAluno().getEmail()});
-                    intent.putExtra(Intent.EXTRA_SUBJECT, usuario.getNome());
-                    intent.putExtra(Intent.EXTRA_TEXT, "Email para " + usuario.getNome());
-                    v.getContext().startActivity(Intent.createChooser(intent, ""));
-                }
-            });
-
-            btLigar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    Usuario usuario = usuarios.get(position);
-                }
+            itemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (listener != null && position != RecyclerView.NO_POSITION)
+                    listener.onItemClick(usuarios.get(position));
             });
         }
     }
@@ -119,7 +88,7 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioH
         void onItemClick(Usuario usuario);
     }
 
-    public void setOnImteClickListener(OnItemClickListener listener) {
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 }

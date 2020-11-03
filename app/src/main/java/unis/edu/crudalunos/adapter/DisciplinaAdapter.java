@@ -12,9 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import unis.edu.crudalunos.R;
-import unis.edu.crudalunos.model.CursoDisciplinas;
 import unis.edu.crudalunos.model.Disciplina;
-import unis.edu.crudalunos.model.Usuario;
 
 public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaAdapter.DisciplinaHolder>{
     private List<Disciplina> disciplinas = new ArrayList<>();

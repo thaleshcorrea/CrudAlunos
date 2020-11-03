@@ -13,8 +13,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
         Usuario.class,
         Curso.class,
         Horario.class,
-        Disciplina.class
-}, version = 2, exportSchema = false)
+        Disciplina.class,
+}, version = 4, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract UsuarioDao usuarioDao();

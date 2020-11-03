@@ -1,7 +1,9 @@
 package unis.edu.crudalunos.model;
 
 import android.app.Application;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -32,8 +34,8 @@ public class DisciplinaViewModel extends AndroidViewModel {
         new DisciplinaViewModel.GetCursoComDisciplinasAsync(disciplinaDao, listener).execute();
     }
 
-    public void insert(Disciplina disciplina) {
-        new DisciplinaViewModel.InsertAsyncTask(disciplinaDao).execute(disciplina);
+    public void insert(Disciplina disciplina, OnTaskCompleted listener) {
+        new DisciplinaViewModel.InsertAsyncTask(disciplinaDao, listener).execute(disciplina);
     }
 
     public void update(Disciplina disciplina) {
@@ -64,17 +66,23 @@ public class DisciplinaViewModel extends AndroidViewModel {
         }
     }
 
-    private class InsertAsyncTask extends AsyncTask<Disciplina, Void, Void> {
+    private class InsertAsyncTask extends AsyncTask<Disciplina, Void, Long> {
         private DisciplinaDao disciplinaDao;
+        private OnTaskCompleted listener;
 
-        public InsertAsyncTask(DisciplinaDao disciplinaDao) {
+        public InsertAsyncTask(DisciplinaDao disciplinaDao, OnTaskCompleted listener) {
             this.disciplinaDao = disciplinaDao;
+            this.listener = listener;
         }
 
         @Override
-        protected Void doInBackground(Disciplina... disciplinas) {
-            disciplinaDao.insert(disciplinas[0]);
-            return null;
+        protected Long doInBackground(Disciplina... disciplinas) {
+            return disciplinaDao.insert(disciplinas[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Long id) {
+            listener.processFinish(id);
         }
     }
 

@@ -133,17 +133,14 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         final boolean manterConectado = chManterConectado.isChecked();
-        usuarioViewModel.Login(usuario, senha, new OnTaskCompleted() {
-            @Override
-            public void processFinish(Object output) {
-                if (output != null) {
-                    Usuario usuario = (Usuario) output;
-                    entrar(usuario, manterConectado);
-                } else {
-                    showSnackBar();
-                }
-
+        usuarioViewModel.Login(usuario, senha, output -> {
+            if (output != null) {
+                Usuario usuario1 = (Usuario) output;
+                entrar(usuario1, manterConectado);
+            } else {
+                showSnackBar();
             }
+
         });
     }
 

@@ -25,7 +25,7 @@ public class DisciplinaHorarios {
     @Embedded
     private Disciplina disciplina;
     @Relation(
-            parentColumn = "id",
+            parentColumn = "disciplinaId",
             entityColumn = "disciplinaId"
     )
     private List<Horario> horarios;

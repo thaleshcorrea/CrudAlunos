@@ -9,6 +9,12 @@
     <string name="title_curso">Curso</string>
     <string name="title_disciplina">Disciplina</string>
     <string name="title_professor">Professor</string>
+    <string name="title_novo_curso">Novo curso</string>
+    <string name="title_editar_curso">Editar curso</string>
+    <string name="title_search">Pesquisar</string>
+    <string name="title_newhorario">Novo horário</string>
+    <string name="title_edithorario">Editar horário</string>
+    <string name="escolher_tipo">Escolher</string>
 
     <string name="bem_vindo">Bem-Vindo</string>
     <string name="login">Faça login para continuar</string>
@@ -47,7 +53,10 @@
     <string name="telefone">Telefone</string>
     <string name="selecionar">Selecionar</string>
     <string name="remover">Remover</string>
-    <string name="title_activity_curso">CursoActivity</string>
+
+    <!-- Professores -->
+    <string name="pesquisar_professores">Pesquisar professores</string>
+    <string name="title_professore">Professor</string>
 
     <!-- Curso cadastros -->
     <string name="title_tab_detalhes">Detalhes</string>
@@ -55,6 +64,16 @@
 
     <!-- Disciplina cadastros -->
     <string name="required_nome">Digite um nome para disciplina</string>
+    <string name="nenhum_professor_selecionado">Nenhum professor selecionado</string>
+    <string name="nenhum_curso_selecionado">Nenhum curso selecionado</string>
+    <string name="horarios">Horários</string>
+    <string name="new_chip">New Chip</string>
+    <string name="professor_removido">Professor removido</string>
+    <string name="curso_removido">Curso removido</string>
+    <string name="desfazer">Desfazer</string>
+    <string name="default_time">00:00</string>
+    <string name="inicio">Inicio</string>
+    <string name="fim">Fim</string>
 
     <!-- Preference Titles -->
     <string name="cadastros_header">Cadastros</string>
@@ -71,6 +90,28 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Hint strings -->
+    <string name="hint_pesquisar_cursos">Pesquisar cursos...</string>
+
+    <!-- Horarios -->
+    <string name="segunda">Segunda</string>
+    <string name="terca">Terça</string>
+    <string name="quarta">Quarta</string>
+    <string name="quinta">Quinta</string>
+    <string name="sexta">Sexta</string>
+    <string name="sabado">Sábado</string>
+    <string name="domingo">Domingo</string>
+    <string name="short_domingo">D</string>
+    <string name="short_segunda">S</string>
+    <string name="short_terca">T</string>
+    <string name="short_quarta">Q</string>
+    <string name="short_quinta">Q</string>
+    <string name="short_sexta">S</string>
+    <string name="short_sabado">S</string>
+    <string name="dias_semana">Dias da semana</string>
+    <string name="invalid_interval">Intervalo entre horas inválido</string>
+    <string name="dia_semana_required">Selecione pelo menos um dia da semana</string>
 </resources>

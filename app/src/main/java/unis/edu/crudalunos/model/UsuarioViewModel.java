@@ -52,6 +52,10 @@ public class UsuarioViewModel extends AndroidViewModel {
         return usuarios;
     }
 
+    public LiveData<List<Usuario>> getByNome (String nome){
+        return usuarioDao.getByNome(nome);
+    }
+
     private class GetByIdAsyncTask extends AsyncTask<Integer, Void, Usuario> {
         private UsuarioDao usuarioDao;
         private OnTaskCompleted listener;

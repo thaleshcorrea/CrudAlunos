@@ -13,9 +13,10 @@ import java.util.List;
 
 import unis.edu.crudalunos.R;
 import unis.edu.crudalunos.model.Curso;
+import unis.edu.crudalunos.model.CursoWithDisciplinas;
 
 public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.CursoHolder> {
-    private List<Curso> cursos = new ArrayList<>();
+    private List<CursoWithDisciplinas> cursos = new ArrayList<>();
     private OnItemClickListener listener;
 
     @NonNull
@@ -28,8 +29,8 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.CursoHolder>
 
     @Override
     public void onBindViewHolder(@NonNull CursoHolder holder, int position) {
-        Curso curso = cursos.get(position);
-        holder.tbCurso.setText(curso.getNome());
+        CursoWithDisciplinas curso = cursos.get(position);
+        holder.tbCurso.setText(curso.curso.getNome());
     }
 
     @Override
@@ -37,12 +38,12 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.CursoHolder>
         return cursos.size();
     }
 
-    public void setCursos(List<Curso> cursos) {
+    public void setCursos(List<CursoWithDisciplinas> cursos) {
         this.cursos = cursos;
         notifyDataSetChanged();
     }
 
-    public Curso getCursoAt(int position) {
+    public CursoWithDisciplinas getCursoAt(int position) {
         return cursos.get(position);
     }
 
@@ -68,7 +69,7 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.CursoHolder>
     }
 
     public interface OnItemClickListener {
-        void onItemClick(Curso curso);
+        void onItemClick(CursoWithDisciplinas curso);
     }
 
     public void setOnClickListener(OnItemClickListener listener) {

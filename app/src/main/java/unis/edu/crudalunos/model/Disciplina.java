@@ -2,26 +2,27 @@ package unis.edu.crudalunos.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity(tableName = "disciplinas")
 public class Disciplina implements Serializable {
-    public Disciplina() {
-
-    }
+    public Disciplina() {}
 
     public Disciplina(String nome) {
         this.descricao = nome;
     }
 
-    public int getId() {
-        return id;
+    public long getDisciplinaId() {
+        return disciplinaId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDisciplinaId(long disciplinaId) {
+        this.disciplinaId = disciplinaId;
     }
 
     @NonNull
@@ -33,18 +34,32 @@ public class Disciplina implements Serializable {
         this.descricao = descricao;
     }
 
-    public int getCursoId() {
+    public long getCursoId() {
         return cursoId;
     }
 
-    public void setCursoId(int cursoId) {
+    public void setCursoId(long cursoId) {
         this.cursoId = cursoId;
     }
 
-    @PrimaryKey
-    private int id;
+    public List<Horario> getHorarios() {
+        return horarios;
+    }
+
+    public void setHorarios(List<Horario> horarios) {
+        this.horarios = horarios;
+    }
+
+    @PrimaryKey(autoGenerate = true)
+    private long disciplinaId;
+
     @NonNull
     private String descricao;
+
     @NonNull
-    private int cursoId;
+    @ForeignKey(entity = Curso.class, parentColumns = "cursoId", childColumns = "cursoId")
+    private long cursoId;
+
+    @Ignore
+    private List<Horario> horarios;
 }

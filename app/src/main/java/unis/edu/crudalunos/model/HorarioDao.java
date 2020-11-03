@@ -14,8 +14,14 @@ public interface HorarioDao {
     @Query("SELECT * FROM horarios")
     LiveData<List<Horario>> getAll();
 
+    @Query("SELECT * FROM horarios WHERE disciplinaId = :disciplinaId")
+    List<Horario> getByDisciplina(long disciplinaId);
+
     @Insert
     void insert(Horario horario);
+
+    @Insert
+    void insertAll(List<Horario> horarios);
 
     @Delete
     void delete(Horario horario);

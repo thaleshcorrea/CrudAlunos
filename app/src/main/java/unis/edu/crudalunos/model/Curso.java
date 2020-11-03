@@ -2,18 +2,20 @@ package unis.edu.crudalunos.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity(tableName = "cursos")
 public class Curso implements Serializable {
-    public int getId() {
-        return id;
+    public long getCursoId() {
+        return cursoId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCursoId(long cursoId) {
+        this.cursoId = cursoId;
     }
 
     @NonNull
@@ -26,7 +28,8 @@ public class Curso implements Serializable {
     }
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private long cursoId;
+
     @NonNull
     private String nome;
 }
