@@ -12,14 +12,17 @@ import android.widget.TextView;
 import com.google.android.material.card.MaterialCardView;
 
 import unis.edu.crudalunos.helpers.app_parameters;
+import unis.edu.crudalunos.model.DisciplinaViewModel;
 import unis.edu.crudalunos.model.Usuario;
+import unis.edu.crudalunos.model.UsuarioCursoViewModel;
 
 public class AlunoHomeFragment extends Fragment {
 
-    private MaterialCardView materialCardView;
-    private TextView textViewDisciplina;
-    private TextView textViewHorario;
-    private TextView textViewStatus;
+    // Views
+    private TextView textViewBemVindo;
+
+    private UsuarioCursoViewModel usuarioCursoViewModel;
+    private DisciplinaViewModel disciplinaViewModel;
 
     public AlunoHomeFragment() {
 
@@ -39,14 +42,9 @@ public class AlunoHomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_aluno_home, container, false);
 
-        // SetUp views
-        materialCardView = view.findViewById(R.id.materialCardViewProximaAula);
-        textViewDisciplina = view.findViewById(R.id.textViewDisciplina);
-        textViewHorario = view.findViewById(R.id.textViewHorario);
-        textViewStatus = view.findViewById(R.id.textViewStatus);
-
         Usuario usuario = app_parameters.getLoggedUser();
-
+        textViewBemVindo = view.findViewById(R.id.textViewBemVindo);
+        textViewBemVindo.setText(getString(R.string.bem_vindo) + ", " + usuario.getNome());
 
         return view;
     }

@@ -7,7 +7,7 @@
     tools:context=".AlunoHomeFragment">
 
     <TextView
-        android:id="@+id/textViewHorarios"
+        android:id="@+id/textViewBemVindo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -15,44 +15,20 @@
         android:layout_marginStart="8dp"
         android:text="@string/bem_vindo"
         android:textColor="@color/colorPrimary"
-        android:textSize="18dp" />
+        android:textSize="24dp" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardViewProximaAula"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:layout_marginStart="16dp"
+        android:text="@string/aulas_hoje"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="8dp">
-
-            <TextView
-                android:id="@+id/textViewDisciplina"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/title_disciplina"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/textViewHorario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/horarios"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/textViewStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/status"
-                android:textColor="@color/colorPrimary" />
-
-
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/disciplinahorario_item"/>
 
 </LinearLayout>

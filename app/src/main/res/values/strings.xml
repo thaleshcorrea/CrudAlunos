@@ -58,6 +58,7 @@
     <string name="status">Status</string>
     <string name="curso_matriculados">Cursos matriculados</string>
     <string name="aluno_ja_matriculado">Aluno já matriculado no curso</string>
+    <string name="aulas_hoje">Aulas hoje</string>
 
     <!-- Professores -->
     <string name="pesquisar_professores">Pesquisar professores</string>
