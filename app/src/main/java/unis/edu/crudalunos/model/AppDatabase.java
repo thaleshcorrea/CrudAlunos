@@ -14,15 +14,15 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
         Curso.class,
         Horario.class,
         Disciplina.class,
-        UsuarioDisciplina.class
-}, version = 4, exportSchema = false)
+        UsuarioCurso.class
+}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract UsuarioDao usuarioDao();
     public abstract CursoDao cursoDao();
     public abstract DisciplinaDao disciplinaDao();
     public abstract HorarioDao horarioDao();
-    public abstract UsuarioDisciplinaDao usuarioDisciplinaDao();
+    public abstract UsuarioCursoDao usuarioCursoDao();
 
     private static volatile AppDatabase database;
     public static AppDatabase getDatabase(Context context) {

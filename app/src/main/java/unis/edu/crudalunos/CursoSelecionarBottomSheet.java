@@ -20,7 +20,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
 
-import unis.edu.crudalunos.adapter.CursoAdapter;
+import unis.edu.crudalunos.adapter.CursoWithDisciplinaAdapter;
 import unis.edu.crudalunos.model.CursoViewModel;
 import unis.edu.crudalunos.model.CursoWithDisciplinas;
 
@@ -31,7 +31,7 @@ public class CursoSelecionarBottomSheet extends BottomSheetDialogFragment {
     private MaterialButton btCancelar;
 
     private CursoViewModel cursoViewModel;
-    private CursoAdapter adapter;
+    private CursoWithDisciplinaAdapter adapter;
 
     @Nullable
     @Override
@@ -51,7 +51,7 @@ public class CursoSelecionarBottomSheet extends BottomSheetDialogFragment {
         recyclerView.setHasFixedSize(true);
 
         // SetUp adapter
-        adapter = new CursoAdapter();
+        adapter = new CursoWithDisciplinaAdapter();
         adapter.setOnClickListener(curso -> {
             selecionar(curso);
             dismiss();
@@ -91,5 +91,7 @@ public class CursoSelecionarBottomSheet extends BottomSheetDialogFragment {
 
         if(className.equals(DisciplinaActivity.class.getSimpleName()))
             ((DisciplinaActivity)getActivity()).selecionarCurso(curso.curso);
+        else if(className.equals(UsuarioEditActivity.class.getSimpleName()))
+            ((UsuarioEditActivity)getActivity()).setCurso(curso.curso);
     }
 }

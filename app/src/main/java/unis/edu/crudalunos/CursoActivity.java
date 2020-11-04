@@ -2,7 +2,6 @@ package unis.edu.crudalunos;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,10 +17,7 @@ import androidx.appcompat.widget.SearchView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.List;
-
-import unis.edu.crudalunos.adapter.CursoAdapter;
-import unis.edu.crudalunos.helpers.OnTaskCompleted;
+import unis.edu.crudalunos.adapter.CursoWithDisciplinaAdapter;
 import unis.edu.crudalunos.model.Curso;
 import unis.edu.crudalunos.model.CursoViewModel;
 import unis.edu.crudalunos.model.CursoWithDisciplinas;
@@ -33,7 +29,7 @@ public class CursoActivity extends AppCompatActivity {
     private static final int CURSO_EDIT_REQUEST = 2;
 
     private CursoViewModel cursoViewModel;
-    private CursoAdapter adapter;
+    private CursoWithDisciplinaAdapter adapter;
     private FloatingActionButton fbAdd;
     private RecyclerView recyclerView;
 
@@ -54,7 +50,7 @@ public class CursoActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        adapter = new CursoAdapter();
+        adapter = new CursoWithDisciplinaAdapter();
         adapter.setOnClickListener(curso -> edit(curso));
     }
 
@@ -95,7 +91,7 @@ public class CursoActivity extends AppCompatActivity {
 
     private void getCursosFromDb(String searchText) {
         searchText = "%" + searchText + "%";
-        cursoViewModel.getByNome(searchText).observe(CursoActivity.this, (Observer<List<CursoWithDisciplinas>>) cursoWithDisciplinas -> {
+        cursoViewModel.getByNome(searchText).observe(CursoActivity.this, cursoWithDisciplinas -> {
             if(cursoWithDisciplinas == null) {
                 return;
             }

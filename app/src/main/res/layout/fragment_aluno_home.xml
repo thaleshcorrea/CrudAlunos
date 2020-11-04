@@ -1,64 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".AlunoHomeFragment">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textViewHorarios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="16dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/bem_vindo"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18dp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardViewProximaAula"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
 
-        <TextView
-            android:id="@+id/textViewHorarios"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="16dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/bem_vindo"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18dp" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardViewProximaAula"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="8dp">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/textViewDisciplina"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="8dp">
+                android:layout_height="wrap_content"
+                android:text="@string/title_disciplina"
+                android:textSize="20sp" />
 
-                <TextView
-                    android:id="@+id/textViewDisciplina"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/title_disciplina"
-                    android:textSize="20sp" />
+            <TextView
+                android:id="@+id/textViewHorario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/horarios"
+                android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/textViewHorario"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/horarios"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/textViewStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/status"
-                    android:textColor="@color/colorPrimary" />
+            <TextView
+                android:id="@+id/textViewStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/status"
+                android:textColor="@color/colorPrimary" />
 
 
-            </LinearLayout>
+        </LinearLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>
 
-    </LinearLayout>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

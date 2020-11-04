@@ -15,6 +15,8 @@
     <string name="title_newhorario">Novo horário</string>
     <string name="title_edithorario">Editar horário</string>
     <string name="escolher_tipo">Escolher</string>
+    <string name="title_informacoes_basicas">Informações básicas</string>
+    <string name="title_edit_usuario">Editar usuário</string>
 
     <string name="bem_vindo">Bem-Vindo</string>
     <string name="login">Faça login para continuar</string>
@@ -54,6 +56,8 @@
     <string name="selecionar">Selecionar</string>
     <string name="remover">Remover</string>
     <string name="status">Status</string>
+    <string name="curso_matriculados">Cursos matriculados</string>
+    <string name="aluno_ja_matriculado">Aluno já matriculado no curso</string>
 
     <!-- Professores -->
     <string name="pesquisar_professores">Pesquisar professores</string>

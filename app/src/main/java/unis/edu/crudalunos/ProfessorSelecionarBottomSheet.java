@@ -1,7 +1,5 @@
 package unis.edu.crudalunos;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,10 +20,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
 
-import unis.edu.crudalunos.adapter.CursoAdapter;
 import unis.edu.crudalunos.adapter.UsuarioAdapter;
-import unis.edu.crudalunos.model.CursoViewModel;
-import unis.edu.crudalunos.model.CursoWithDisciplinas;
 import unis.edu.crudalunos.model.Usuario;
 import unis.edu.crudalunos.model.UsuarioViewModel;
 

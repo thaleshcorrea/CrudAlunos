@@ -1,6 +1,20 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <PreferenceCategory app:title="@string/title_informacoes_basicas">
+
+        <Preference
+            android:key="editar_usuario"
+            android:title="Editar"
+            android:summary="Editar dados cadastrais do usuário">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:targetClass="unis.edu.crudalunos.UsuarioEditActivity"
+                android:targetPackage="unis.edu.crudalunos"/>
+        </Preference>
+
+    </PreferenceCategory>
+
     <PreferenceCategory app:title="@string/cadastros_header">
 
         <Preference
