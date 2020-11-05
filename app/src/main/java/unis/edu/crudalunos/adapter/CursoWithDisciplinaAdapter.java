@@ -1,11 +1,16 @@
 package unis.edu.crudalunos.adapter;
 
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -47,7 +52,6 @@ public class CursoWithDisciplinaAdapter extends RecyclerView.Adapter<CursoWithDi
     }
 
     class CursoHolder extends RecyclerView.ViewHolder{
-        public static final int REQUEST_CALL = 1;
         private TextView tbCurso;
 
         public CursoHolder(@NonNull View itemView) {
@@ -55,13 +59,10 @@ public class CursoWithDisciplinaAdapter extends RecyclerView.Adapter<CursoWithDi
 
             tbCurso = itemView.findViewById(R.id.tbCurso);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(cursos.get(position));
-                    }
+            itemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (listener != null && position != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(cursos.get(position));
                 }
             });
         }

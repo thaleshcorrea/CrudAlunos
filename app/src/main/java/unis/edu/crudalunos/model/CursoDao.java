@@ -18,8 +18,16 @@ public interface CursoDao {
     LiveData<List<CursoWithDisciplinas>> getAll();
 
     @Transaction
+    @Query("SELECT * FROM cursos WHERE cursoId = :cursoId")
+    LiveData<List<CursoWithDisciplinas>> getById(long cursoId);
+
+    @Transaction
     @Query("SELECT * FROM cursos WHERE nome LIKE :nome")
     LiveData<List<CursoWithDisciplinas>> getByNome(String nome);
+
+    @Transaction
+    @Query("SELECT * FROM cursos WHERE cursoId IN (:cursoIds)")
+    List<CursoWithDisciplinasAndHorarios> getCursoWithDisciplinasAndHorarios(List<Long> cursoIds);
 
     @Insert
     long insert(Curso curso);

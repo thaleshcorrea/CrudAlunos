@@ -32,6 +32,14 @@ public class CursoViewModel extends AndroidViewModel {
         return cursoDao.getByNome(nome);
     }
 
+    public LiveData<List<CursoWithDisciplinas>> getById(long cursoId) {
+        return cursoDao.getById(cursoId);
+    }
+
+    public List<CursoWithDisciplinasAndHorarios> getCursoWithDisciplinasAndHorarios(List<Long> cursoIds) {
+        return cursoDao.getCursoWithDisciplinasAndHorarios(cursoIds);
+    }
+
     public void insert(Curso curso, OnTaskCompleted listener) {
         new CursoViewModel.InsertAsyncTask(cursoDao, listener).execute(curso);
     }

@@ -26,9 +26,8 @@
         android:textSize="15dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/disciplinahorario_item"/>
+        tools:listitem="@layout/curso_horario_item"/>
 
 </LinearLayout>
