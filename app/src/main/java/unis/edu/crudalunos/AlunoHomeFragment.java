@@ -7,6 +7,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -21,6 +23,7 @@ import com.google.android.material.card.MaterialCardView;
 import java.util.ArrayList;
 import java.util.List;
 
+import unis.edu.crudalunos.adapter.CursoHorarioAdapter;
 import unis.edu.crudalunos.helpers.app_parameters;
 import unis.edu.crudalunos.model.Curso;
 import unis.edu.crudalunos.model.CursoViewModel;
@@ -34,11 +37,12 @@ import unis.edu.crudalunos.model.UsuarioWithCurso;
 
 public class AlunoHomeFragment extends Fragment {
 
-    // Views
     private TextView textViewBemVindo;
 
     private UsuarioCursoViewModel usuarioCursoViewModel;
     private CursoViewModel cursoViewModel;
+    private CursoHorarioAdapter cursoHorarioAdapter;
+    private RecyclerView recyclerView;
 
     public AlunoHomeFragment() {
 
@@ -62,9 +66,15 @@ public class AlunoHomeFragment extends Fragment {
         textViewBemVindo = view.findViewById(R.id.textViewBemVindo);
         textViewBemVindo.setText(getString(R.string.bem_vindo) + ", " + usuario.getNome());
 
+        recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        recyclerView.setHasFixedSize(true);
+
         // SetUp viewModel
         usuarioCursoViewModel = new ViewModelProvider(this).get(UsuarioCursoViewModel.class);
         cursoViewModel = new ViewModelProvider(this).get(CursoViewModel.class);
+
+        getUsuarioWithCursos(usuario.getId());
 
         return view;
     }
@@ -74,17 +84,23 @@ public class AlunoHomeFragment extends Fragment {
             if(output == null) {
                 return;
             }
+
             UsuarioWithCurso usuarioWithCursos = (UsuarioWithCurso)output;
             List<Long> cursoIds = new ArrayList<>();
             for(Curso curso : usuarioWithCursos.getCursos()) {
                 cursoIds.add(curso.getCursoId());
             }
 
-            List<CursoWithDisciplinasAndHorarios> cursoWithDisciplinasAndHorarios = cursoViewModel.getCursoWithDisciplinasAndHorarios(cursoIds);
-        });
-    }
+            cursoViewModel.getCursoWithDisciplinasAndHorarios(cursoIds, output1 -> {
+                if(output1 == null) {
+                    return;
+                }
+                List<CursoWithDisciplinasAndHorarios> cursoWithDisciplinasAndHorarios = (List<CursoWithDisciplinasAndHorarios>)output1;
 
-    private void getDisciplinas(Curso curso) {
-        LiveData<List<CursoWithDisciplinas>> cursoWithDisciplinas = cursoViewModel.getById(curso.getCursoId());
+                cursoHorarioAdapter = new CursoHorarioAdapter();
+                cursoHorarioAdapter.setCursoWithDisciplinasAndHorariosList(cursoWithDisciplinasAndHorarios);
+                recyclerView.setAdapter(cursoHorarioAdapter);
+            });
+        });
     }
 }

@@ -1,6 +1,7 @@
 package unis.edu.crudalunos.model;
 
 import android.app.Application;
+import android.net.sip.SipSession;
 import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
@@ -36,8 +37,8 @@ public class CursoViewModel extends AndroidViewModel {
         return cursoDao.getById(cursoId);
     }
 
-    public List<CursoWithDisciplinasAndHorarios> getCursoWithDisciplinasAndHorarios(List<Long> cursoIds) {
-        return cursoDao.getCursoWithDisciplinasAndHorarios(cursoIds);
+    public void getCursoWithDisciplinasAndHorarios(List<Long> cursoIds, OnTaskCompleted listener) {
+        new GetCursoWithDisciplinasAndHorarios(cursoDao, listener).execute(cursoIds);
     }
 
     public void insert(Curso curso, OnTaskCompleted listener) {
@@ -50,6 +51,26 @@ public class CursoViewModel extends AndroidViewModel {
 
     public void delete(Curso curso) {
         new CursoViewModel.DeleteAsyncTask(cursoDao).execute(curso);
+    }
+
+    private class GetCursoWithDisciplinasAndHorarios extends AsyncTask<List<Long>, Void, List<CursoWithDisciplinasAndHorarios>> {
+        private OnTaskCompleted listener;
+        private CursoDao cursoDao;
+
+        public GetCursoWithDisciplinasAndHorarios(CursoDao cursoDao, OnTaskCompleted listener) {
+            this.cursoDao = cursoDao;
+            this.listener = listener;
+        }
+
+        @Override
+        protected List<CursoWithDisciplinasAndHorarios> doInBackground(List<Long>... longs) {
+            return cursoDao.getCursoWithDisciplinasAndHorarios(longs[0]);
+        }
+
+        @Override
+        protected void onPostExecute(List<CursoWithDisciplinasAndHorarios> cursoWithDisciplinasAndHorarios) {
+            listener.processFinish(cursoWithDisciplinasAndHorarios);
+        }
     }
 
     private class InsertAsyncTask extends AsyncTask<Curso, Void, Long> {

@@ -42,10 +42,11 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/aula_horario_item"
+                tools:listitem="@layout/disciplina_item"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

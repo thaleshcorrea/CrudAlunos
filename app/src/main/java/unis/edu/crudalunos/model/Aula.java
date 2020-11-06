@@ -3,9 +3,10 @@ package unis.edu.crudalunos.model;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.Relation;
 
 import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 public class Aula {
@@ -61,19 +62,19 @@ public class Aula {
     }
 
     @PrimaryKey
-    long aulaId;
+    private long aulaId;
 
     @NonNull
-    Date data;
+    private Date data;
 
     @NonNull
-    Time horaInicio;
+    private Time horaInicio;
 
     @NonNull
-    Time horaTermino;
+    private Time horaTermino;
 
     @NonNull
-    long disciplinaId;
+    private long disciplinaId;
 
-    int status;
+    private int status;
 }

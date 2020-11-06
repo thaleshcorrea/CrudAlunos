@@ -49,7 +49,6 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.CursoHolder>
     }
 
     class CursoHolder extends RecyclerView.ViewHolder{
-        public static final int REQUEST_CALL = 1;
         private TextView tbCurso;
 
         public CursoHolder(@NonNull View itemView) {

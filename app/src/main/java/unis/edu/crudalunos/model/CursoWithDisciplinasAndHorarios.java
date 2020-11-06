@@ -14,22 +14,21 @@ public class CursoWithDisciplinasAndHorarios {
     public void setCurso(Curso curso) {
         this.curso = curso;
     }
-
-    public List<DisciplinaHorarios> getCursoWithDisciplinas() {
-        return cursoWithDisciplinas;
-    }
-
-    public void setCursoWithDisciplinas(List<DisciplinaHorarios> cursoWithDisciplinas) {
-        this.cursoWithDisciplinas = cursoWithDisciplinas;
-    }
-
     @Embedded
     private Curso curso;
+
+    public List<DisciplinaHorarios> getDisciplinaHorarios() {
+        return disciplinaHorarios;
+    }
+
+    public void setDisciplinaHorarios(List<DisciplinaHorarios> disciplinaHorarios) {
+        this.disciplinaHorarios = disciplinaHorarios;
+    }
 
     @Relation(
             entity = Disciplina.class,
             parentColumn = "cursoId",
-            entityColumn = "cursoId"
+            entityColumn = "disciplinaId"
     )
-    List<DisciplinaHorarios> cursoWithDisciplinas;
+    List<DisciplinaHorarios> disciplinaHorarios;
 }

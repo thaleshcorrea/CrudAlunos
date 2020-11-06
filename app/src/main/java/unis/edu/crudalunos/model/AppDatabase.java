@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 @Database(entities = {
@@ -17,7 +18,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
         UsuarioCurso.class,
         Aula.class,
         AulaAlunos.class,
-}, version = 1, exportSchema = false)
+}, version = 2, exportSchema = false)
+@TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract UsuarioDao usuarioDao();
