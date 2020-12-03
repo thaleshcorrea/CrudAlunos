@@ -53,6 +53,7 @@
     <string name="telefone">Telefone</string>
     <string name="selecionar">Selecionar</string>
     <string name="remover">Remover</string>
+    <string name="status">Status</string>
 
     <!-- Professores -->
     <string name="pesquisar_professores">Pesquisar professores</string>

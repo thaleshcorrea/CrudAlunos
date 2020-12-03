@@ -14,6 +14,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
         Curso.class,
         Horario.class,
         Disciplina.class,
+        UsuarioDisciplina.class
 }, version = 4, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -21,6 +22,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract CursoDao cursoDao();
     public abstract DisciplinaDao disciplinaDao();
     public abstract HorarioDao horarioDao();
+    public abstract UsuarioDisciplinaDao usuarioDisciplinaDao();
 
     private static volatile AppDatabase database;
     public static AppDatabase getDatabase(Context context) {
